@@ -8,3 +8,4 @@ if(keyboard_check(vk_shift)) {
 	pSpd = lerp(pSpd, 0.25, 0.1);
 }
 
+WaterZ += sin(get_timer()/1000000)*0.1;

@@ -7,13 +7,12 @@ varying vec3 v_view;
 varying vec4 v_GLPOS;
 
 uniform int uRender; // 1 For see the normals of the water.
-
 uniform vec4 uSun; // xyz = Light Direction, w = light ambient intensity.
 uniform vec4 uWater; //Time, Time Speed, Water Res, Water Opacity
-
 uniform vec3 uWaterCol; // Water Color
-
 uniform sampler2D uTexRef; // Texture for the Reflections
+
+#define WavesIntesity 0.75 // Waves normal intesity.
 
 float hash(vec2 q) {
 	return fract(sin(q.x*50.12+q.y*81.10)*1245.6721);
@@ -56,7 +55,7 @@ void main()
 	
 	// compute the water normal.
 	vec3 norm = normalize(v_normal) * 0.5 + 0.5;
-	norm *= cos(water_norm(uv, 1.0) * 0.5 + 0.5);
+	norm *= cos(water_norm(uv, WavesIntesity) * 0.5 + 0.5);
 	
 	// set the water texture.
 	vec4 tex = texture2D(gm_BaseTexture, mix(uvProj, norm.xy, 0.05));
@@ -76,7 +75,7 @@ void main()
 	waterCol *= texture2D(uTexRef, q).rgb*spec; // Reflections
 	
 	// mix the water texture and the color with the reflections.
-	tex.rgb = mix(tex.rgb,waterCol,uWater.w);
+	tex.rgb = mix(tex.rgb,waterCol,uWater.w)/2.0;
 	
 	// output
 	gl_FragColor = (uRender < 1? vec4(norm,1) : vec4(tex.rgb*(dif+spec), 1.0));

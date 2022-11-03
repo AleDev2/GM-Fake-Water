@@ -2,11 +2,11 @@
 
 WaterZ = 64;
 WaterSpd = 0.25;
-WaterRes = 2;
-//WaterCol = [255,25,15]; // Red
-WaterCol = [5,125,225]; // Blue
-//WaterCol = [255,255,255]; // White
-WaterAlpha = 0.5;
+WaterRes = 10;
+//WaterCol = [255,125,15]; // Red
+//WaterCol = [5,175,225]; // Blue
+WaterCol = [255,255,255]; // White
+WaterAlpha = .5;
 
 global.SunDirection = [32., 0.5, 400.];
 global.SunAmbient = 0.25;
@@ -14,6 +14,7 @@ global.SunAmbient = 0.25;
 sceneTestSize = 20;
 
 window_set_cursor(cr_none);
+//window_set_fullscreen(1);
 
 gpu_set_zwriteenable(1);
 gpu_set_ztestenable(1);

@@ -16,6 +16,6 @@ void main()
 	
 	v_coord = in_TextureCoord;
 	v_normal = (gm_Matrices[MATRIX_WORLD]*vec4(in_Normal,1)).xyz;
-	v_view = (gm_Matrices[MATRIX_WORLD_VIEW]*vec4(in_Position,1.)).xyz;
+	v_view = (gm_Matrices[MATRIX_WORLD]*vec4(in_Position,1.)).xyz;
 	v_GLPOS = gl_Position;
 }
